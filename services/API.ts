@@ -92,7 +92,7 @@ export const extractClinicalData = async (
   customFields?: SchemaField[],
   envApiKey?: string  
 ): Promise<ExtractedData> => {
-  const apiKey = envApiKey || process.env.API_KEY;
+  const apiKey = envApiKey || import.meta.env.VITE_API_KEY;
   
   if (!apiKey) {
     throw new Error("API_KEY is missing!");
