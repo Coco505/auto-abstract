@@ -1,0 +1,5 @@
+{
+  "name": "AutoAbstract",
+  "description": "An automated clinical research data entry tool that extracts structured information from unstructured Emergency Room clinical charts and notes using AI.",
+  "requestFramePermissions": []
+}
