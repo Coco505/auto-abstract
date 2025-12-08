@@ -1,6 +1,6 @@
 import { ExtractedData, SchemaField } from "../types";
 
-const API_KEY = process.env.API_KEY;
+const apiKey = process.env.API_KEY;
 
 // --- Default Hardcoded Schema (Injury Surveillance) ---
 const defaultInjurySchemaProperties = {
@@ -124,10 +124,8 @@ export const extractClinicalData = async (
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${API_KEY}`,
-        "Content-Type": "application/json",
-        "HTTP-Referer": process.env.YOUR_SITE_URL || "http://localhost:3000",
-        "X-Title": process.env.YOUR_APP_NAME || "Clinical Data Extraction"
+        "Authorization": `Bearer ${apiKey}`,
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         model: "google/gemma-3-27b-it:free",
