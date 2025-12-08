@@ -1,8 +1,5 @@
 import { ExtractedData, SchemaField } from "../types";
 
-const apiKey = process.env.API_KEY;
-if (!apiKey) throw new Error("API_KEY is missing!");
-
 // --- Default Hardcoded Schema (Injury Surveillance) ---
 const defaultInjurySchemaProperties = {
   visitDate: { type: "string", description: "Date of the hospital visit (YYYY-MM-DD) or 'Not Specified'" },
@@ -92,8 +89,15 @@ export const generateSchemaFromFields = (fields: SchemaField[]) => {
 
 export const extractClinicalData = async (
   clinicalNote: string, 
-  customFields?: SchemaField[]
+  customFields?: SchemaField[],
+  envApiKey?: string  
 ): Promise<ExtractedData> => {
+  const apiKey = envApiKey || process.env.API_KEY;
+  
+  if (!apiKey) {
+    throw new Error("API_KEY is missing!");
+  }
+
   try {
     // Determine which schema to use
     let targetSchema = defaultInjurySchema;
@@ -143,6 +147,7 @@ export const extractClinicalData = async (
 
     if (!response.ok) {
       const errorText = await response.text();
+      console.error("OpenRouter API Error:", response.status, errorText);
       const error = new Error(`OpenRouter API error: ${response.status} - ${errorText}`);
       (error as any).statusCode = response.status;
       (error as any).responseBody = errorText;
@@ -167,7 +172,7 @@ export const extractClinicalData = async (
     
     throw new Error("Empty or invalid response from model");
   } catch (error) {
-    console.error("OpenRouter Extraction Error:", error);
+    console.error("OpenRouter Gemini Extraction Error:", error);
     throw error;
   }
 };
