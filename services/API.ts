@@ -1,6 +1,9 @@
 import { ExtractedData, SchemaField } from "../types";
 
 const apiKey = process.env.API_KEY;
+if (!apiKey) {
+  throw new Error("API_KEY environment variable is not set");
+}
 
 // --- Default Hardcoded Schema (Injury Surveillance) ---
 const defaultInjurySchemaProperties = {
@@ -166,7 +169,7 @@ export const extractClinicalData = async (
     
     throw new Error("Empty or invalid response from model");
   } catch (error) {
-    console.error("OpenRouter Gemini Extraction Error:", error);
+    console.error("OpenRouter Extraction Error:", error);
     throw error;
   }
 };
