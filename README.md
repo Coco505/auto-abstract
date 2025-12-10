@@ -8,7 +8,7 @@ No setup required, just visit the link and start using!
 
 ## Overview
 
-AutoAbstract uses advanced AI to transform unstructured clinical narratives into structured, machine-readable data. Simply paste a clinical note, and the tool automatically identifies and extracts key information like patient demographics, diagnoses, incident details, and disposition.
+AutoAbstract uses advanced AI to transform unstructured clinical narratives into structured, machine-readable data. Simply paste a clinical note, and the tool automatically identifies and abtracts key information like patient demographics, diagnoses, incident details, and disposition.
 
 ## Why AutoAbstract?
 
